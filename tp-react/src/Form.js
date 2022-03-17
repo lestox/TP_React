@@ -27,35 +27,41 @@ export default class Form extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log(this.props.todos)
+        if(this.props.todos.length >= 5) {
+            alert("You already have 5 todos, if you want tu create another one do you have to finish and delete one !")
+            return
+        }
         const newItem = {
             id: generateUniqueID(),
             title: this.state.title,
             text: this.state.text,
             status: this.state.status
-        };
-
+        }
         this.setTodos(prev => [...prev, newItem]);
     }
 
 
     render() {
-        return (
-            <form className="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" onSubmit={this.handleSubmit}>
-                <div className="col-12">
-                    <div className="form-outline">
-                        <input type="text" id="form1" className="form-control" onChange={this.getTitle}/>
-                        <label className="form-label" htmlFor="form1">Title</label>
+        {
+            return (
+                <form className="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" onSubmit={this.handleSubmit}>
+                    <div className="col-12">
+                        <div className="form-outline">
+                            <input type="text" id="form1" className="form-control" onChange={this.getTitle}/>
+                            <label className="form-label" htmlFor="form1">Title</label>
+                        </div>
+                        <div className="form-outline">
+                            <input type="text" id="form1" className="form-control" onChange={this.getText}/>
+                            <label className="form-label" htmlFor="form1">Text</label>
+                        </div>
                     </div>
-                    <div className="form-outline">
-                        <input type="text" id="form1" className="form-control" onChange={this.getText}/>
-                        <label className="form-label" htmlFor="form1">Text</label>
-                    </div>
-                </div>
 
-                <div className="col-12">
-                    <button type="submit" className="btn btn-primary">Save</button>
-                </div>
-            </form>
-        )
+                    <div className="col-12">
+                        <button type="submit" className="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            )
+        }
     }
 }

@@ -38,7 +38,7 @@ function App() {
 
                   <h4 className="text-center my-3 pb-3">To Do App</h4>
 
-                  <Form setTodos={setTodos}/>
+                  <Form setTodos={setTodos} todos={todos}/>
 
                   {todos.map((todo) => (
                           (<Todo title={todo.title} text={todo.text} key={todo.id}/>)
